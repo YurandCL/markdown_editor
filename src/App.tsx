@@ -12,7 +12,7 @@ function App() {
   const [selectedText, setSelectedText] = useState<string|undefined>('')
   const [showAlert, setShowAlert] = useState({ show: false, msg: '' })
 
-  const timerRef = useRef<NodeJS.Timeout>(null)
+  const timerRef = useRef<NodeJS.Timeout>()
   const downloadRef = useRef<HTMLAnchorElement>(null)
   const uploadRef = useRef<HTMLInputElement>(null)
 
@@ -41,12 +41,13 @@ function App() {
     }
   }
 
-  const handleChange = (e) => {
-    const { target, nativeEvent } = e
-    const { value }: { value: string } = target
-    const { data: keyPress }: { data: string } = nativeEvent
+  const handleChange = ({target, nativeEvent}: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const { value } = target
+    const {data: keyPress} = nativeEvent as InputEvent
+    console.log({target,nativeEvent})
 
-    const textReplaced = selectedText && hasThatText({keyPress, completeText: markdownText, textToEval: selectedText})
+
+    const textReplaced = selectedText && keyPress && hasThatText({keyPress, completeText: markdownText, textToEval: selectedText})
 
     return setMarkdownText(textReplaced || value)
   }
@@ -55,7 +56,7 @@ function App() {
     setShowAlert({ show: true, msg })
 
     timerRef.current && clearTimeout(timerRef.current)
-    timerRef.current = setTimeout(() => {
+    timerRef.current = global.setTimeout(() => {
       setShowAlert({show: false, msg: ''})
     }, 3000)
   }
@@ -75,7 +76,7 @@ function App() {
     })
   }
 
-  const handleUploadFile = (e) => {
+  const handleUploadFile = (e:React.ChangeEvent<HTMLInputElement>) => {
     const {target} = e
 
     const {files} = target
@@ -84,10 +85,10 @@ function App() {
     const file = files[0]
     const reader = new FileReader()
 
-    reader.onload = (e) => {
-      const file = e.target.result
-      const lines = file.split(/\r\n|\n/)
-      setMarkdownText(lines.join('\n'))
+    reader.onload = ({target}) => {
+      const file = target && target.result
+      const lines = typeof file === 'string' && file.split(/\r\n|\n/)
+      lines && setMarkdownText(lines.join('\n'))
     }
 
     reader.onerror = () => alert('no se pudo leer el archivo')
