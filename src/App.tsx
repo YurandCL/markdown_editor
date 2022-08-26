@@ -5,7 +5,7 @@ import hljs from 'highlight.js'
 import './App.css'
 import 'highlight.js/styles/night-owl.css'
 
-const defaultMd = '# Markdown Editor\n here you can put your md content'
+const defaultMd = '# Welcome\n\nyou now can write here anything are you want\n\nplese, select the textarea to do that.\n\nIf you don\'t know what is the text field follow our arrow\n\n          /\n         /\n        /\n       /\n      /\n     /_____________________________________\n     \\\n      \\\n       \\\n        \\\n         \\\n          \\'
 
 function App() {
   const [markdownText, setMarkdownText] = useState(defaultMd)
@@ -113,18 +113,21 @@ function App() {
       <h1 className="App_title">
           Online Markdown Editor
       </h1>
-      <button onClick={()=>uploadRef.current && uploadRef.current.click()}>Upload MD file</button>
+      <a href="http://https://www.markdownguide.org/" target="_blank" rel="noopener noreferrer">Markdown Docs</a>
       <div className="App_content">
         <div className="md_editor">
           <div className="md_editor-header">
             <h1>Md text</h1>
-            <button
-              className="md_editor-header_downloadButton"
-              onClick={() => handleDownload(markdownText)}
-            >
-              Download MD
-            </button>
-            <a style={{display: 'none'}} download="file.md" ref={downloadRef}></a>
+            <div className="md_editor-header_actions">
+              <button
+                className="md_editor-header_downloadButton"
+                onClick={() => handleDownload(markdownText)}
+              >
+                Download MD
+              </button>
+              <a style={{ display: 'none' }} download="file.md" ref={downloadRef}></a>
+              <button className="md_editor-header_downloadButton" onClick={()=>uploadRef.current && uploadRef.current.click()}>Upload MD file</button>
+            </div>
           </div>
           <div className="md_editor-content">
             <div className="md_editor-content_body">

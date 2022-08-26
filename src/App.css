@@ -34,8 +34,15 @@ pre{
 
 .md_editor-header{
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
+  gap: 16px;
+
+}
+
+.md_editor-header_actions{
+  display: flex;
+  gap: 4px;
 }
 
 .md_editor-header_downloadButton{
@@ -68,7 +75,7 @@ pre{
 .md_editor-content_body-textarea{
   background-color: #0e131a;
   border-color: #cc8b2a;
-  height: calc(100vh - 200px);
+  height: calc(100vh - 250px);
   transition: border-color 0.3s ease-in-out;
   width: 600px;
 }
@@ -118,16 +125,30 @@ pre{
 .md_result-content{
   background-color: #141c27;
   border-radius: 8px;
-  height: calc(100vh - 200px);
-  padding: 8px;
+  height: calc(100vh - 250px);
+  padding: 24px;
   text-align: left;
   overflow: auto;
+}
+
+.md_result-content table{
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+.md_result-content table tr:nth-child(2n){
+  background-color: #212d3f;
+}
+
+.md_result-content td, .md_result-content th{
+  border: 1px solid #6b6b6b;
+  padding: 4px 8px;
 }
 
 .App_alert{
   position: fixed;
   bottom: 2rem;
-  background-color: #0c7908;
+  background-color: #3aa338;
   border-radius: 4px;
   padding: 4px 8px;
 }
