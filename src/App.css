@@ -1,0 +1,149 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  height: 100vh;
+  width: 100%;
+}
+
+pre{
+  padding: 16px;
+  border: 1px solid rgb(73, 73, 73);
+  background-color: #19191a;
+  border-radius: 5px;
+}
+
+.App{
+  width: 100%;
+}
+
+.App_title{
+  color: rgb(26, 157, 218);
+}
+
+.App_content{
+  display: flex;
+  gap: 16px;
+  width: 100%;
+}
+
+.md_editor, .md_result{
+  width: 100%;
+}
+
+.md_editor-header{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.md_editor-header_downloadButton{
+  background-color: #1262cd;
+  border: none;
+  border-radius: 4px;
+  padding: 4px 8px;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.md_editor-header_downloadButton:hover{
+  background-color: #084ba1;
+}
+
+.md_editor-content{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.md_editor-content:hover .md_editor-content_body-copyButton{
+  display: inline-block;
+}
+
+.md_editor-content_body{
+  width: fit-content;
+  position: relative;
+}
+
+.md_editor-content_body-textarea{
+  background-color: #0e131a;
+  border-color: #cc8b2a;
+  height: calc(100vh - 200px);
+  transition: border-color 0.3s ease-in-out;
+  width: 600px;
+}
+
+.md_editor-content_body-textarea:focus-visible{
+  outline: none;
+  border-color: #199dd1;
+}
+
+.md_editor-content_body-dragDrop{
+  position: absolute;
+  /* display: none; */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  color: #47f;
+  background-color: rgb(255, 255, 255);
+}
+
+.md_editor-content_body-dragDrop.here{
+  background-color: red;
+}
+
+.md_editor-content_body-uploadFile{
+  display: none;
+}
+
+.md_editor-content_body-copyButton{
+  background-color: rgba(14, 19, 26, 0.3);
+  backdrop-filter: blur(2px);
+  border-radius: 4px;
+  border: 1px solid #6b6b6b;
+  display: none;
+  height: 32px;
+  position: absolute;
+  right: 24px;
+  top: 10px;
+  transition: background-color 0.2s ease-in-out;
+  width: 32px;
+}
+
+.md_editor-content_body-copyButton:hover{
+  background-color: #555555;
+}
+
+.md_result-content{
+  background-color: #141c27;
+  border-radius: 8px;
+  height: calc(100vh - 200px);
+  padding: 8px;
+  text-align: left;
+  overflow: auto;
+}
+
+.App_alert{
+  position: fixed;
+  bottom: 2rem;
+  background-color: #0c7908;
+  border-radius: 4px;
+  padding: 4px 8px;
+}
+
+@media only screen and (max-width: 768px) {
+  .App_content{
+    display: block;
+  }
+
+  .md_editor-content_body-copyButton{
+    display: inline-block;
+  }
+}
+
+@media only screen and (max-width: 1280px) {
+  .md_editor-content_body-textarea{
+    width: 350px;
+  }
+}
